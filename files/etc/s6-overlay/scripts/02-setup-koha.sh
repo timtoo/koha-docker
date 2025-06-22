@@ -21,6 +21,11 @@ export MB_PASS=${MB_PASS:-guest}
 
 envsubst < /docker/templates/koha-sites.conf > /etc/koha/koha-sites.conf
 
+
+# /etc/mysql/koha-common.cnf is used by a few koha scripts
+rm /etc/mysql/koha-common.cnf && envsubst < /docker/templates/koha-common.cnf > /etc/mysql/koha-common.cnf
+chmod 660 /etc/mysql/koha-common.cnf
+
 # Create entry with admin username, password and myqsl server for this instance
 echo -n "default:${MYSQL_USER}:${MYSQL_PASSWORD}:${DB_NAME}:${MYSQL_SERVER}" > /etc/koha/passwd
 
