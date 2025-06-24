@@ -12,9 +12,9 @@ services:
       - SYS_NICE
     environment:
       MYSQL_SERVER: db
-      MYSQL_USER: koha_teolib
-      MYSQL_PASSWORD: example
-      DB_NAME: koha_teolib
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
       MEMCACHED_SERVERS: memcached:11211
       MB_HOST: rabbitmq
     depends_on:
@@ -34,10 +34,10 @@ services:
     volumes:
       - mariadb-koha:/var/lib/mysql
     environment:
-      MARIADB_ROOT_PASSWORD: example
-      MARIADB_DATABASE: koha_teolib
-      MARIADB_USER: koha_teolib
-      MARIADB_PASSWORD: example
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MARIADB_DATABASE: ${DB_NAME}
+      MARIADB_USER: ${DB_USER}
+      MARIADB_PASSWORD: ${DB_PASSWORD}
     networks:
       - koha
 
